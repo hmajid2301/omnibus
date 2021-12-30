@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run: Fast API",
+      "type": "python",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["app:app", "--reload", "--port", "8080"]
+    },
+    {
+      "name": "Tests: Unit",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-rf", "tests/unit"],
+      "justMyCode": true
+    },
+    {
+      "name": "Tests: Integration",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-rf", "tests/integration"],
+      "justMyCode": true,
+      "env": {
+        "PYTHONASYNCIODEBUG": "1"
+      }
+    },
+    {
+      "name": "Test: Current File",
+      "type": "python",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-rf", "${file}"],
+      "justMyCode": true
+    }
+  ]
+}
