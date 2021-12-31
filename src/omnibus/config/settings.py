@@ -18,9 +18,6 @@ class OmnibusSettings(BaseSettings):
     WEB_HOST: str = "0.0.0.0"
     WEB_PORT: int = 8080
 
-    AUTH0_DOMAIN: str
-    AUTH0_CUSTOM_API: str
-
     CORS: List[AnyHttpUrl] = []
     REGEX_CORS: Optional[List[str]] = None
 
