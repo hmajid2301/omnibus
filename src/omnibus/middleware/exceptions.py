@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from omnibus.log.logger import get_logger
 
 
-async def add_uncaught_exceptions(request: Request, call_next):
+async def caught_exceptions_http(request: Request, call_next):
     try:
         return await call_next(request)
     except Exception:

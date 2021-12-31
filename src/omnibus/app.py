@@ -10,7 +10,7 @@ from omnibus.config.settings import OmnibusSettings
 from omnibus.healthcheck import default_healthcheck
 from omnibus.log.logger import get_logger
 from omnibus.middleware.cors import add_cors
-from omnibus.middleware.exceptions import add_uncaught_exceptions
+from omnibus.middleware.exceptions import caught_exceptions_http
 from omnibus.operation_id import use_route_names_as_operation_ids
 
 
@@ -25,7 +25,6 @@ async def setup_app(
     client = motor_asyncio.AsyncIOMotorClient(uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
 
-    app.middleware("http")(add_uncaught_exceptions)
     add_cors(app=app, cors=config.CORS, regex_cors=config.REGEX_CORS)
     app.add_api_route("/health", health([healthcheck]))
     use_route_names_as_operation_ids(app)
