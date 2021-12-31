@@ -1,11 +1,19 @@
-from fastapi import Request
+from fastapi import Request, status
+from fastapi.responses import JSONResponse
+
 from omnibus.log.logger import get_logger
 
 
-async def add_uncaught_exceptions(request: Request, call_next, exception_return):
+async def add_uncaught_exceptions(request: Request, call_next):
     try:
         return await call_next(request)
     except Exception:
         log = get_logger()
         log.exception("failed to complete operation", request=request)
-        return exception_return
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={
+                "error_message": "failed to complete operation internal server error",
+                "error_code": "server_error",
+            },
+        )
