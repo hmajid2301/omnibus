@@ -1,0 +1,25 @@
+{
+  "name": "Banter Bus Ominbus",
+  "shutdownAction": "stopCompose",
+  "dockerComposeFile": ["docker-compose.dev.yml"],
+  "service": "app",
+  "workspaceFolder": "/app",
+  "initializeCommand": "bash .devcontainer/pre-build-script.sh",
+  "onCreateCommand": "bash /app/.devcontainer/post-build-script.sh",
+  "remoteUser": "vscode",
+  "extensions": [
+    "aaron-bond.better-comments",
+    "ms-python.python",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+    "ms-python.vscode-pylance",
+    "ms-vsliveshare.vsliveshare"
+  ],
+  "settings": {
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "/bin/bash"
+      }
+    }
+  }
+}

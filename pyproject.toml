@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "omnibus"
+version = "0.1.0"
+description = "A library containing core code between FastAPI webservices for the Banter Bus application."
+authors = ["Haseeb Majid <hello@haseebmajid.dev>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+fastapi = "^0.70.0"
+uvicorn = "^0.15.0"
+python-dotenv = "^0.19.2"
+structlog = "^21.2.0"
+beanie = "^1.8.5"
+motor = "^2.5.1"
+pydantic = { extras = ["dotenv"], version = "^1.8.2" }
+fastapi-health = "^0.4.0"
+dnspython = "^2.1.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+ipython = "^7.29.0"
+pre-commit = "^2.15.0"
+httpx = "^0.21.1"
+asgi-lifespan = "^1.0.1"
+pytest = "^6.2.5"
+pytest-mock = "^3.6.1"
+pytest-asyncio = "^0.16.0"
+factory-boy = "^3.2.1"
+pytest-cov = "^3.0.0"
+coverage = "^6.2"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+src_paths = ["src", "tests"]
+
+[tool.black]
+line-length = 120
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
