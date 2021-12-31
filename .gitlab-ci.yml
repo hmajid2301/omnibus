@@ -3,8 +3,6 @@ image: python:3.9.8
 variables:
   PIP_CACHE_DIR: "${CI_PROJECT_DIR}/.cache/pip"
   PIP_DOWNLOAD_DIR: ".pip"
-  DOCKER_DRIVER: overlay2
-  DOCKER_HOST: tcp://docker:2375
 
 cache:
   key: "${CI_JOB_NAME}"
@@ -28,35 +26,3 @@ test:lint:
     - merge_request
   script:
     - make lint
-
-test:unit-tests:
-  stage: test
-  only:
-    - merge_request
-  script:
-    - make unit_tests
-
-test:coverage:
-  stage: test
-  only:
-    - main
-    - merge_request
-  extends:
-    - .mongo
-  script:
-    - make coverage
-  coverage: '/^TOTAL.+?(\S+\%)$/'
-  artifacts:
-    when: always
-    reports:
-      junit: report.xml
-      cobertura: coverage.xml
-
-test:integration-tests:
-  stage: test
-  only:
-    - merge_request
-  extends:
-    - .mongo
-  script:
-    - make integration_tests
