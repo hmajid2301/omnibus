@@ -8,15 +8,17 @@ from motor import motor_asyncio
 
 from omnibus.config.settings import get_ominibus_settings
 from omnibus.healthcheck import default_healthcheck
+from omnibus.log.logger import get_logger
 from omnibus.middleware.cors import add_cors
 from omnibus.middleware.exceptions import add_uncaught_exceptions
+from omnibus.operation_id import use_route_names_as_operation_ids
 
 
 async def setup_app(
+    app: FastAPI,
     document_models: List[Union[Type["DocType"], str]] = None,
     healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
-) -> FastAPI:
-    app = FastAPI()
+):
     config = get_ominibus_settings()
     uri = config.get_mongodb_uri()
     client = motor_asyncio.AsyncIOMotorClient(uri)
@@ -25,4 +27,7 @@ async def setup_app(
     app.middleware("http")(add_uncaught_exceptions)
     add_cors(app=app, cors=config.CORS, regex_cors=config.REGEX_CORS)
     app.add_api_route("/health", health([healthcheck]))
-    return app
+    use_route_names_as_operation_ids(app)
+
+    log = get_logger()
+    log.info(f"starting {app.title} {config.WEB_HOST}:{config.WEB_PORT}")
