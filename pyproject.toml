@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "app"
 version = "0.1.0"
-description = "The management API used to manage game, question and stories for the Banter Bus application."
+description = "A library containing core code between FastAPI webservices for the Banter Bus application."
 authors = ["Haseeb Majid <hello@haseebmajid.dev>"]
 
 [tool.poetry.dependencies]
@@ -12,8 +12,6 @@ python-dotenv = "^0.19.2"
 structlog = "^21.2.0"
 beanie = "^1.8.5"
 motor = "^2.5.1"
-languagecodes = "^1.1.1"
-fastapi-cloudauth = "^0.4.0"
 pydantic = { extras = ["dotenv"], version = "^1.8.2" }
 fastapi-health = "^0.4.0"
 dnspython = "^2.1.0"
@@ -36,7 +34,7 @@ coverage = "^6.2"
 [tool.isort]
 profile = "black"
 multi_line_output = 3
-src_paths = ["app", "tests"]
+src_paths = ["src", "tests"]
 
 [tool.black]
 line-length = 120

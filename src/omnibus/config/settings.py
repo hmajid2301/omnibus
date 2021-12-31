@@ -1,10 +1,9 @@
-from functools import lru_cache
 from typing import List, Optional
 
 from pydantic import AnyHttpUrl, BaseSettings
 
 
-class Settings(BaseSettings):
+class OmnibusSettings(BaseSettings):
     ENVIRONMENT: str = "production"
     LOG_LEVEL: str = "DEBUG"
 
@@ -23,11 +22,7 @@ class Settings(BaseSettings):
     AUTH0_CUSTOM_API: str
 
     CORS: List[AnyHttpUrl] = []
-    REGEX_CORS: Optional[str] = None
-
-    class Config:
-        env_prefix = "BANTER_BUS_MANAGEMENT_API_"
-        env_file = ".env"
+    REGEX_CORS: Optional[List[str]] = None
 
     def get_mongodb_uri(self) -> str:
         uri = f"{self.DB_SCHEMA}://{self.DB_USERNAME}:{self.DB_PASSWORD}@{self.DB_HOST}"
@@ -39,6 +34,5 @@ class Settings(BaseSettings):
         return uri
 
 
-@lru_cache()
-def get_settings():
-    return Settings()
+def get_ominibus_settings():
+    return OmnibusSettings()

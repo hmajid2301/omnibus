@@ -10,7 +10,7 @@ from structlog.stdlib import BoundLogger
 
 
 def setup_logger(log_level: str, env: str):
-    _setup_stdlib_logger(log_level=log_level, env=env)
+    _setup_logger_config(log_level=log_level, env=env)
     processors = [
         _add_module_and_lineno,
         structlog.processors.add_log_level,
@@ -40,8 +40,7 @@ def setup_logger(log_level: str, env: str):
     )
 
 
-def _setup_stdlib_logger(log_level: str, env: str):
-    logging.getLogger(__name__).setLevel(log_level)
+def _setup_logger_config(log_level: str, env: str):
     logging_config = {
         "version": 1,
         "disable_existing_loggers": False,

@@ -1,6 +1,6 @@
 # Banter Bus Ominibus
 
-A RESTful API to manage the games and questions for the Banter Bus application.
+A library containing core code between FastAPI webservices for the Banter Bus application.
 
 ## Running using devcontainer
 
