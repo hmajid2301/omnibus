@@ -4,13 +4,9 @@ from typing import Any, Awaitable, List, Optional
 import uvicorn
 from fastapi.applications import FastAPI
 
-PORT = 8000
-LISTENING_IF = "127.0.0.1"
-BASE_URL = f"http://{LISTENING_IF}:{PORT}"
-
 
 class UvicornTestServer(uvicorn.Server):
-    def __init__(self, app: FastAPI, host: str = LISTENING_IF, port: int = PORT):
+    def __init__(self, app: FastAPI, host: str = "127.0.0.1", port: int = 8000):
         self._startup_done = asyncio.Event()
         self._serve_task: Optional[Awaitable[Any]] = None
         super().__init__(config=uvicorn.Config(app, host=host, port=port))
