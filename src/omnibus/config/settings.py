@@ -22,6 +22,7 @@ class OmnibusSettings(BaseSettings):
     REGEX_CORS: Optional[List[str]] = None
 
     CLIENT_ID: str
+    USE_AUTH: bool = True
 
     def get_mongodb_uri(self) -> str:
         uri = f"{self.DB_SCHEMA}://{self.DB_USERNAME}:{self.DB_PASSWORD}@{self.DB_HOST}"
