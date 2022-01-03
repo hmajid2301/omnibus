@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "omnibus"
-version = "0.1.0"
+version = "0.2.0"
 description = "A library containing core code between FastAPI webservices for the Banter Bus application."
 authors = ["Haseeb Majid <hello@haseebmajid.dev>"]
 
@@ -15,6 +15,8 @@ motor = "^2.5.1"
 pydantic = { extras = ["dotenv"], version = "^1.8.2" }
 fastapi-health = "^0.4.0"
 dnspython = "^2.1.0"
+google-auth = "^2.3.3"
+requests = "^2.27.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"
