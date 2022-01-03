@@ -16,6 +16,7 @@ pydantic = { extras = ["dotenv"], version = "^1.8.2" }
 fastapi-health = "^0.4.0"
 dnspython = "^2.1.0"
 google-auth = "^2.3.3"
+requests = "^2.27.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.11b1"
