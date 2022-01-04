@@ -23,7 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial Release.
 
-[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.2.0...main
+[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.2.1...main
+[0.2.1]: https://gitlab.com/banter-bus/omnibus/compare/0.2.1...0.2.0
 [0.2.0]: https://gitlab.com/banter-bus/omnibus/compare/0.2.0...0.1.1
 [0.1.1]: https://gitlab.com/banter-bus/omnibus/compare/0.1.1...0.1.0
 [0.1.0]: https://gitlab.com/banter-bus/omnibus/-/tags/0.1.0
