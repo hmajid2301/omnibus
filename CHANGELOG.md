@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2021-01-04
+### Changed
+- refactor `JWTBearer`, removing redundant if, else check. Should never end up with empty credentials.
+
 ## [0.2.0] - 2021-01-03
 ### Added
 - `auth` module to handle authentication and authorisation using JWT bearer tokens.
