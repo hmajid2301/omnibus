@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.2] - 2021-01-09
+### Fixed
+- Not calling `setup_logger`.
+
 ## [0.2.1] - 2021-01-04
 ### Changed
 - refactor `JWTBearer`, removing redundant if, else check. Should never end up with empty credentials.
@@ -23,7 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial Release.
 
-[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.2.1...main
+[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.2.2...main
+[0.2.2]: https://gitlab.com/banter-bus/omnibus/compare/0.2.2...0.2.1
 [0.2.1]: https://gitlab.com/banter-bus/omnibus/compare/0.2.1...0.2.0
 [0.2.0]: https://gitlab.com/banter-bus/omnibus/compare/0.2.0...0.1.1
 [0.1.1]: https://gitlab.com/banter-bus/omnibus/compare/0.1.1...0.1.0

@@ -8,7 +8,7 @@ from motor import motor_asyncio
 
 from omnibus.config.settings import OmnibusSettings
 from omnibus.healthcheck import default_healthcheck
-from omnibus.log.logger import get_logger
+from omnibus.log.logger import get_logger, setup_logger
 from omnibus.middleware.cors import add_cors
 from omnibus.operation_id import use_route_names_as_operation_ids
 
@@ -20,6 +20,7 @@ async def setup_app(
     healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
 ):
     config = get_settings()
+    setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT)
     uri = config.get_mongodb_uri()
     client = motor_asyncio.AsyncIOMotorClient(uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
