@@ -10,7 +10,6 @@ from omnibus.config.settings import OmnibusSettings
 from omnibus.healthcheck import default_healthcheck
 from omnibus.log.logger import get_logger, setup_logger
 from omnibus.middleware.cors import add_cors
-from omnibus.operation_id import use_route_names_as_operation_ids
 
 
 async def setup_app(
@@ -27,7 +26,6 @@ async def setup_app(
 
     add_cors(app=app, cors=config.CORS, regex_cors=config.REGEX_CORS)
     app.add_api_route("/health", health([healthcheck]))
-    use_route_names_as_operation_ids(app)
 
     log = get_logger()
     log.info(f"starting {app.title} {config.WEB_HOST}:{config.WEB_PORT}")
