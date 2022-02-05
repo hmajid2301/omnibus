@@ -7,7 +7,7 @@ authors = ["Haseeb Majid <hello@haseebmajid.dev>"]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
 fastapi = "^0.70.0"
-uvicorn = "^0.15.0"
+uvicorn = {extras = ["standard"], version = "^0.17.4"}
 python-dotenv = "^0.19.2"
 structlog = "^21.2.0"
 beanie = "^1.8.5"
