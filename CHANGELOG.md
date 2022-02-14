@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.2.5] - 2022-02-14
+### Changed
+- Typing on `document_models` if `None` to be empty list
+
 ## [0.2.4] - 2022-02-14
 ### Changed
 - Separate `UVICORN_LOG_LEVEL` env variable for logs.
@@ -37,8 +41,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial Release.
 
-[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.2.4...main
-[0.2.4]: https://gitlab.com/banter-bus/omnibus/compare/0.2.3...0.2.3
+[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.2.5...main
+[0.2.5]: https://gitlab.com/banter-bus/omnibus/compare/0.2.5...0.2.4
+[0.2.4]: https://gitlab.com/banter-bus/omnibus/compare/0.2.4...0.2.3
 [0.2.3]: https://gitlab.com/banter-bus/omnibus/compare/0.2.3...0.2.2
 [0.2.2]: https://gitlab.com/banter-bus/omnibus/compare/0.2.2...0.2.1
 [0.2.1]: https://gitlab.com/banter-bus/omnibus/compare/0.2.1...0.2.0
