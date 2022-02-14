@@ -6,6 +6,7 @@ from pydantic import AnyHttpUrl, BaseSettings
 class OmnibusSettings(BaseSettings):
     ENVIRONMENT: str = "production"
     LOG_LEVEL: str = "DEBUG"
+    UVICORN_LOG_LEVEL: str = "CRITICAL"
 
     DB_SCHEMA: str = "mongodb"
     DB_USERNAME: str

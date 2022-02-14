@@ -9,8 +9,11 @@ import uvicorn.config
 from structlog.stdlib import BoundLogger
 
 
-def setup_logger(log_level: str, env: str):
-    _setup_logger_config(log_level=log_level, env=env)
+def setup_logger(log_level: str, env: str, uvicorn_log_level: str = None):
+    if not uvicorn_log_level:
+        uvicorn_log_level = log_level
+
+    _setup_logger_config(log_level=log_level, env=env, uvicorn_log_level=uvicorn_log_level)
     processors = [
         _add_module_and_lineno,
         structlog.processors.add_log_level,
@@ -40,7 +43,8 @@ def setup_logger(log_level: str, env: str):
     )
 
 
-def _setup_logger_config(log_level: str, env: str):
+def _setup_logger_config(log_level: str, env: str, uvicorn_log_level: str):
+
     logging_config = {
         "version": 1,
         "disable_existing_loggers": False,
@@ -62,12 +66,12 @@ def _setup_logger_config(log_level: str, env: str):
                 "formatter": "json" if env == "production" else "console",
             },
             "uvicorn.access": {
-                "level": log_level,
+                "level": uvicorn_log_level,
                 "class": "logging.StreamHandler",
                 "formatter": "access",
             },
             "uvicorn.default": {
-                "level": log_level,
+                "level": uvicorn_log_level,
                 "class": "logging.StreamHandler",
                 "formatter": "default",
             },
@@ -76,12 +80,12 @@ def _setup_logger_config(log_level: str, env: str):
             "": {"handlers": ["default"], "level": log_level},
             "uvicorn.error": {
                 "handlers": ["default" if env == "production" else "uvicorn.default"],
-                "level": log_level,
+                "level": uvicorn_log_level,
                 "propagate": False,
             },
             "uvicorn.access": {
                 "handlers": ["default" if env == "production" else "uvicorn.access"],
-                "level": log_level,
+                "level": uvicorn_log_level,
                 "propagate": False,
             },
         },

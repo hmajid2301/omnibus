@@ -19,7 +19,7 @@ async def setup_app(
     healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
 ):
     config = get_settings()
-    setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT)
+    setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
     uri = config.get_mongodb_uri()
     client = motor_asyncio.AsyncIOMotorClient(uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
