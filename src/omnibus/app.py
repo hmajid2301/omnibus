@@ -15,12 +15,9 @@ from omnibus.middleware.cors import add_cors
 async def setup_app(
     app: FastAPI,
     get_settings: Callable[..., OmnibusSettings],
-    document_models: List[Union[Type["DocType"], str]] = None,
+    document_models: List[Union[Type["DocType"], str]],
     healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
 ):
-    if document_models is None:
-        document_models = []
-
     config = get_settings()
     setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
     uri = config.get_mongodb_uri()
