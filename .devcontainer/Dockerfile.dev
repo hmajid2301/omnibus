@@ -1,4 +1,4 @@
-FROM python:3.9.8
+FROM python:3.10.5
 
 ARG USERNAME=vscode
 WORKDIR /app
