@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from google.auth.transport import requests
@@ -9,10 +7,10 @@ from google.oauth2 import id_token
 class JWTBearer(HTTPBearer):
     def __init__(self, client_id: str) -> None:
         self.client_id = client_id
-        super(JWTBearer, self).__init__(auto_error=True)
+        super().__init__(auto_error=True)
 
-    async def __call__(self, request: Request) -> Optional[HTTPAuthorizationCredentials]:
-        credentials = await super(JWTBearer, self).__call__(request=request)
+    async def __call__(self, request: Request) -> HTTPAuthorizationCredentials | None:
+        credentials = await super().__call__(request=request)
         if not credentials:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

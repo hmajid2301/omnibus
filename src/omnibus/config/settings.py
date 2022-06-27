@@ -1,5 +1,3 @@
-from typing import List, Optional
-
 from pydantic import AnyHttpUrl, BaseSettings
 
 
@@ -12,15 +10,15 @@ class OmnibusSettings(BaseSettings):
     DB_USERNAME: str
     DB_PASSWORD: str
     DB_HOST: str
-    DB_PORT: Optional[int]
+    DB_PORT: int | None
     DB_NAME: str
-    AUTH_DB_NAME: Optional[str]
+    AUTH_DB_NAME: str | None
 
     WEB_HOST: str = "0.0.0.0"
     WEB_PORT: int = 8080
 
-    CORS: List[AnyHttpUrl] = []
-    REGEX_CORS: Optional[List[str]] = None
+    CORS: list[AnyHttpUrl] = []
+    REGEX_CORS: list[str] | None = None
 
     CLIENT_ID: str
     USE_AUTH: bool = True

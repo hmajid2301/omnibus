@@ -6,9 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.3.1] - 2022-06-27
+### Changed
+- pre-commit-hooks to use poetry, to be more similar to FastAPI services.
+
 ## [0.3.0] - 2022-06-26
 ### Changed
-- Updated packages
+- Updated packages and use python 3.10.
 
 ## [0.2.6] - 2022-02-15
 ### Changed
@@ -49,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial Release.
 
-[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.3.0...main
+[unreleased]: https://gitlab.com/banter-bus/omnibus/compare/0.3.1...main
+[0.3.1]: https://gitlab.com/banter-bus/omnibus/compare/0.3.1...0.3.0
 [0.3.0]: https://gitlab.com/banter-bus/omnibus/compare/0.3.0...0.2.6
 [0.2.6]: https://gitlab.com/banter-bus/omnibus/compare/0.2.6...0.2.5
 [0.2.5]: https://gitlab.com/banter-bus/omnibus/compare/0.2.5...0.2.4

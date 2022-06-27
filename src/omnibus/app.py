@@ -1,7 +1,8 @@
-from typing import Any, Callable, Dict, List, Type, Union
+from typing import Any, Callable
 
 from beanie import init_beanie
 from beanie.odm.documents import DocType
+from beanie.odm.views import View
 from fastapi import FastAPI
 from fastapi_health import health
 from motor import motor_asyncio
@@ -15,8 +16,8 @@ from omnibus.middleware.cors import add_cors
 async def setup_app(
     app: FastAPI,
     get_settings: Callable[..., OmnibusSettings],
-    document_models: List[Union[Type["DocType"], str]],
-    healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
+    document_models: list[type["DocType"] | type["View"] | str],
+    healthcheck: Callable[..., dict[str, Any] | bool] = default_healthcheck,
 ):
     config = get_settings()
     setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
