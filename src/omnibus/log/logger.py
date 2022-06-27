@@ -1,6 +1,6 @@
 import logging
 import logging.config
-from typing import Any, Dict
+from typing import Any
 
 import structlog
 import structlog._frames
@@ -9,7 +9,7 @@ import uvicorn.config
 from structlog.stdlib import BoundLogger
 
 
-def setup_logger(log_level: str, env: str, uvicorn_log_level: str = None):
+def setup_logger(log_level: str, env: str, uvicorn_log_level: str | None = None):
     if not uvicorn_log_level:
         uvicorn_log_level = log_level
 
@@ -36,7 +36,7 @@ def setup_logger(log_level: str, env: str, uvicorn_log_level: str = None):
         )
 
     structlog.configure(
-        processors=processors,
+        processors=processors,  # type: ignore
         context_class=dict,
         logger_factory=structlog.PrintLoggerFactory(),
         cache_logger_on_first_use=False,
@@ -90,10 +90,10 @@ def _setup_logger_config(log_level: str, env: str, uvicorn_log_level: str):
             },
         },
     }
-    logging.config.dictConfig(logging_config)  # type: ignore
+    logging.config.dictConfig(logging_config)
 
 
-def _add_module_and_lineno(logger: structlog.BoundLogger, name: str, event_dict: Dict[str, Any]) -> Dict[str, Any]:
+def _add_module_and_lineno(logger: structlog.BoundLogger, name: str, event_dict: dict[str, Any]) -> dict[str, Any]:
     frame, module_str = structlog._frames._find_first_app_frame_and_name(additional_ignores=[__name__])
     event_dict["module"] = module_str
     event_dict["function"] = frame.f_code.co_name

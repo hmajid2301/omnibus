@@ -1,11 +1,9 @@
-from typing import List, Optional
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import AnyHttpUrl
 
 
-def add_cors(app: FastAPI, cors: List[AnyHttpUrl], regex_cors: Optional[List[str]] = None) -> FastAPI:
+def add_cors(app: FastAPI, cors: list[AnyHttpUrl], regex_cors: list[str] | None = None) -> FastAPI:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=cors,

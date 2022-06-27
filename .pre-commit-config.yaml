@@ -1,28 +1,9 @@
 repos:
-  - repo: https://github.com/psf/black
-    rev: 21.10b0
-    hooks:
-      - id: black
-        language_version: python3.10
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 4.0.1
-    hooks:
-      - id: flake8
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
-    hooks:
-      - id: isort
-        args: ["--settings-path=."]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.3.0
     hooks:
       - id: check-yaml
-        args: ["--allow-multiple-documents", "--unsafe"]
-  - repo: "https://github.com/pre-commit/mirrors-mypy"
-    rev: "v0.910-1"
-    hooks:
-      - id: "mypy"
-        additional_dependencies: []
+        args: ["--allow-multiple-documents"]
   - repo: local
     hooks:
       - id: forbidden-files
@@ -30,3 +11,30 @@ repos:
         entry: found copier update rejection files; review them and remove them
         language: fail
         files: "\\.rej$"
+      - id: black
+        name: black
+        entry: poetry run black
+        language: system
+        types: [python]
+      - id: flake8
+        name: flake8
+        entry: poetry run flake8
+        language: system
+        types: [python]
+      - id: isort
+        name: isort
+        entry: poetry run isort --settings-path=.
+        language: system
+        types: [python]
+      - id: pyupgrade
+        name: pyupgrade
+        entry: poetry run pyupgrade
+        language: system
+        types: [python]
+        args: [--py310-plus]
+      - id: mypy
+        name: mypy
+        description: Check python types.
+        entry: poetry run mypy
+        language: system
+        types: [python]
