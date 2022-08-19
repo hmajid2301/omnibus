@@ -7,7 +7,6 @@ def add_cors(app: FastAPI, cors: list[AnyHttpUrl], regex_cors: list[str] | None 
     app.add_middleware(
         CORSMiddleware,
         allow_origins=cors,
-        allow_origin_regex=regex_cors,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
