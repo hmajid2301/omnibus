@@ -1,9 +1,9 @@
-from typing import Any, Callable
+from typing import Any, Callable, Dict, List, Type, Union
 
 from beanie import init_beanie
 from beanie.odm.documents import DocType
-from beanie.odm.views import View
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi_health import health
 from motor import motor_asyncio
 
@@ -15,8 +15,8 @@ from omnibus.log.logger import get_logger, setup_logger
 async def setup_app(
     app: FastAPI,
     get_settings: Callable[..., OmnibusSettings],
-    document_models: list[type["DocType"] | type["View"] | str],
-    healthcheck: Callable[..., dict[str, Any] | bool] = default_healthcheck,
+    document_models: List[Union[Type["DocType"], str]],
+    healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
 ):
     config = get_settings()
     setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
@@ -24,7 +24,15 @@ async def setup_app(
     client = motor_asyncio.AsyncIOMotorClient(uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
 
-    # add_cors(app=app, cors=[])
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    # add_cors(app=app)
     app.add_api_route("/health", health([healthcheck]))
 
     log = get_logger()
