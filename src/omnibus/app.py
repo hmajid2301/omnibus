@@ -25,7 +25,7 @@ async def setup_app(
     client = motor_asyncio.AsyncIOMotorClient(uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
 
-    add_cors(app=app, cors=config.CORS, regex_cors=config.REGEX_CORS)
+    add_cors(app=app, cors=["*"])
     app.add_api_route("/health", health([healthcheck]))
 
     log = get_logger()
