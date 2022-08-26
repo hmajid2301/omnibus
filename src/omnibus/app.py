@@ -4,13 +4,13 @@ from beanie import init_beanie
 from beanie.odm.documents import DocType
 from beanie.odm.views import View
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi_health import health
 from motor import motor_asyncio
 
 from omnibus.config.settings import OmnibusSettings
 from omnibus.healthcheck import default_healthcheck
 from omnibus.log.logger import get_logger, setup_logger
+from omnibus.middleware.cors import add_cors
 
 
 async def setup_app(
@@ -26,15 +26,7 @@ async def setup_app(
     client = motor_asyncio.AsyncIOMotorClient(uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
 
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-
-    # add_cors(app=app)
+    add_cors(app=app, cors=config.CORS, regex_cors=config.REGEX_CORS)
     app.add_api_route("/health", health([healthcheck]))
 
     log.info(f"starting {app.title} {config.WEB_HOST}:{config.WEB_PORT}")
