@@ -19,7 +19,6 @@ async def setup_app(
     document_models: List[Union[Type["DocType"], Type["View"], str]],
     healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
 ):
-    log = get_logger()
     config = get_settings()
     setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
     uri = config.get_mongodb_uri()
@@ -29,4 +28,5 @@ async def setup_app(
     add_cors(app=app, cors=config.CORS, regex_cors=config.REGEX_CORS)
     app.add_api_route("/health", health([healthcheck]))
 
+    log = get_logger()
     log.info(f"starting {app.title} {config.WEB_HOST}:{config.WEB_PORT}")
