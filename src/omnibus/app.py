@@ -25,6 +25,7 @@ async def setup_app(
     setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
     log.info("HERE11")
     uri = config.get_mongodb_uri()
+    log.info("HERE11-1", uri=uri)
     client = motor_asyncio.AsyncIOMotorClient(uri)
     log.info("HERE12", uri=uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
