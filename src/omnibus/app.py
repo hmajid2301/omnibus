@@ -20,16 +20,11 @@ async def setup_app(
     healthcheck: Callable[..., Union[Dict[str, Any], bool]] = default_healthcheck,
 ):
     log = get_logger()
-    log.info("HERE")
     config = get_settings()
     setup_logger(log_level=config.LOG_LEVEL, env=config.ENVIRONMENT, uvicorn_log_level=config.UVICORN_LOG_LEVEL)
-    log.info("HERE11")
     uri = config.get_mongodb_uri()
-    log.info("HERE11-1", uri=uri)
     client = motor_asyncio.AsyncIOMotorClient(uri)
-    log.info("HERE12", uri=uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
-    log.info("HERE13")
 
     app.add_middleware(
         CORSMiddleware,
@@ -38,7 +33,6 @@ async def setup_app(
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    log.info("HERE14")
 
     # add_cors(app=app)
     app.add_api_route("/health", health([healthcheck]))
