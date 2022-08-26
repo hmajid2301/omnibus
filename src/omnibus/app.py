@@ -26,7 +26,7 @@ async def setup_app(
     log.info("HERE11")
     uri = config.get_mongodb_uri()
     client = motor_asyncio.AsyncIOMotorClient(uri)
-    log.info("HERE12")
+    log.info("HERE12", uri=uri)
     await init_beanie(database=client[config.DB_NAME], document_models=document_models)
     log.info("HERE13")
 
