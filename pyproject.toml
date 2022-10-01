@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "omnibus"
-version = "0.3.0"
+version = "0.3.3"
 description = "A library containing core code between FastAPI webservices for the Banter Bus application."
 authors = ["Haseeb Majid <hello@haseebmajid.dev>"]
 
